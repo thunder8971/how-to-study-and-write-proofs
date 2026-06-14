@@ -1,0 +1,344 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+
+\graphicspath{{graphics/}}
+
+\newtheorem*{exampletheorem}{Example theorem}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \thispagestyle{empty}
+
+    \vspace*{1.5cm}
+
+    {\Huge\bfseries How to Study and Write Proofs\par}
+
+    \vspace{0.7cm}
+
+    {\Large A practical essay on proof reconstruction\par}
+
+    \vspace{1.8cm}
+
+    \IfFileExists{graphics/cover.jpg}{%
+        \includegraphics[width=0.42\textwidth]{graphics/cover.jpg}\par
+    }{}
+
+    \vspace{1.8cm}
+
+    {\large Ricardo Paredes\par}
+    {\normalsize \texttt{thunder8971}\par}
+
+    \vspace{0.5cm}
+
+    {\normalsize June 2026\par}
+
+    \vspace{0.5cm}
+
+    {\small \copyright\ 2026 Ricardo Paredes. Licensed under CC BY-NC-SA 4.0.\par}
+    {\small \texttt{https://creativecommons.org/licenses/by-nc-sa/4.0/}\par}
+
+    \vfill
+
+    {\itshape For my past, present, and future students, and for those who inspired me to think more carefully about how we learn.\par}
+\end{titlepage}
+
+\setcounter{page}{1}
+
+\begin{abstract}
+This essay presents a practical approach to studying and writing mathematical proofs. It introduces the \emph{Proof Reconstruction Cycle}, a five-stage iterative process that moves from understanding a statement to explaining, strategizing, proving, and reflecting on the proof. The cycle organizes these stages into three phases: understanding, construction, and internalization. In this framework, reflection includes reconstructing the proof from understanding rather than copying or memorizing the original text. Its purpose is not to replace mathematical theory, but to give students a usable framework for reading, producing, and remembering proofs.
+\end{abstract}
+
+\section{Introduction}
+
+Learning mathematical proofs is difficult because a proof is not only a sequence of formal steps. It also requires understanding logical structure, definitions, and proof techniques \cite{velleman2019how}. To understand a proof, a student must understand the statement, the objects involved, the definitions being used, the strategy behind the argument, and the reason why each step is logically valid.
+
+A common mistake is to treat proofs as texts to be memorized. This may help a student reproduce a short argument once, but it rarely leads to transferable understanding. A more useful goal is to reconstruct the proof: to recover it from its definitions, intuition, strategy, and formal structure.
+
+This essay proposes the \emph{Proof Reconstruction Cycle}, a practical method for studying and writing proofs. The cycle is intended for students who want to move beyond passive reading and learn how to understand, produce, and reuse mathematical arguments.
+
+\section{The Proof Reconstruction Cycle}
+
+P{\'o}lya's classical method for problem solving emphasizes understanding the problem, devising a plan, carrying out the plan, and looking back at the complete solution \cite{polya2004how}. This perspective is also useful for proof learning: a proof should not be studied only as a finished object, but as the result of a process.
+
+The Proof Reconstruction Cycle adapts this idea to the study and construction of mathematical proofs. It consists of five stages organized into three phases:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item \textbf{Understanding:} \emph{Decode} \(\rightarrow\) \emph{Explain}.
+    \item \textbf{Construction:} \emph{Strategize} \(\rightarrow\) \emph{Prove}.
+    \item \textbf{Internalization:} \emph{Reflect}.
+\end{enumerate}
+
+The five stages can be summarized as follows:
+
+\begin{description}[leftmargin=3.2cm, style=nextline]
+    \item[Decode] Understand the statement, the objects involved, the hypotheses, the conclusion, and the relevant definitions.
+    \item[Explain] Describe in one's own words why the result should make sense.
+    \item[Strategize] Choose a proof pattern that can turn the intuition into a rigorous argument.
+    \item[Prove] Write the proof using valid definitions, rules, and previous results.
+    \item[Reflect] Look back at the proof, identify its essential idea, extract reusable patterns, and try to reconstruct the argument without copying the original text.
+\end{description}
+
+These stages are not strictly linear. In practice, a learner often moves back and forth between them. This iterative movement is related to metacognitive control in mathematical problem solving: the learner must monitor whether a strategy is working and decide when to revise it \cite{schoenfeld1992learning}. An attempt to write the proof may reveal that a definition was not fully understood, or that the chosen strategy does not connect the hypotheses to the conclusion. In that sense, the cycle is both a method for producing proofs and a method for diagnosing where understanding is weak.
+
+\subsection{Decode}
+
+The first step is to decode the statement. This means asking: What exactly is being claimed? The learner should identify the mathematical objects, the hypotheses, the conclusion, and the definitions that give the statement its precise meaning. In proof writing, definitions are not only background information; they are often the first usable tools.
+
+We will use the following basic theorem throughout the cycle:
+
+\begin{exampletheorem}
+If \(n\) is an even integer, then \(n^2\) is also an even integer.
+\end{exampletheorem}
+
+To decode the theorem, we expand the relevant definitions. The hypothesis says that \(n\) is an even integer, so \(n \in \mathbb{Z}\) and there exists some \(k \in \mathbb{Z}\) such that
+\[
+    n = 2k.
+\]
+The conclusion says that \(n^2\) is an even integer, so we must show that there exists some \(m \in \mathbb{Z}\) such that
+\[
+    n^2 = 2m.
+\]
+
+After decoding, the problem is no longer just a sentence about even numbers. It has become a concrete task: start from \(n = 2k\) for some integer \(k\), and show that \(n^2\) has the form \(2m\) for some integer \(m\).
+
+\subsection{Explain}
+
+The second step is to explain the statement intuitively. The goal is not yet to write a formal proof, but to describe why the result should be true in ordinary mathematical language.
+
+For the example, the intuition is simple: if \(n\) is even, then \(n\) contains a factor of \(2\). When \(n\) is squared, that factor does not disappear. In fact, squaring \(n\) multiplies \(n\) by itself, so the resulting expression still has at least one factor of \(2\). Therefore, it is reasonable to expect \(n^2\) to be even.
+
+This explanation is not a substitute for proof. Its role is to give direction. It tells us what the formal argument should preserve: the factor \(2\) from the assumption that \(n\) is even.
+
+\subsection{Strategize}
+
+The strategy step turns intuition into a plan. Even when the statement is understood and the conclusion feels plausible, the learner still needs a proof pattern that connects the hypothesis to the desired result.
+
+Weber views proof construction as a problem-solving task in which the goal is to find a sequence of logical steps from an initial state to a goal state \cite{weber2001student}. In this view, a proof is not only a written product; it is also the result of a search guided by definitions, known results, and useful strategies.
+
+For the example, the most direct strategy is proof by definition. Since the hypothesis says that \(n\) is even, write \(n = 2k\) for some integer \(k\). Since the conclusion asks us to prove that \(n^2\) is even, try to rewrite \(n^2\) in the form \(2m\), where \(m\) is an integer.
+
+The plan can be written as:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item Use the definition of an even integer to write \(n = 2k\).
+    \item Substitute this expression into \(n^2\).
+    \item Rearrange the result so that a factor of \(2\) is visible.
+    \item Identify the integer that plays the role of the witness \(m\).
+\end{enumerate}
+
+This strategy is modest, but it is reusable. Many elementary direct proofs follow the same pattern: expand a definition, manipulate the expression, and match the definition of the conclusion.
+
+\subsection{Prove}
+
+The prove step is where the argument is written formally. At this stage, the proof should make clear which definitions are being used and why each step follows from the previous one.
+
+\begin{proof}
+Let \(n\) be an even integer. By definition, there exists an integer \(k\) such that \(n = 2k\). Then
+\begin{align*}
+    n^2 &= (2k)^2 \\
+        &= 4k^2 \\
+        &= 2(2k^2).
+\end{align*}
+Let \(m = 2k^2\). Since \(k \in \mathbb{Z}\), we have \(m \in \mathbb{Z}\). Therefore, \(n^2 = 2m\) for some integer \(m\), so \(n^2\) is even.
+\end{proof}
+
+The proof is short because the earlier stages have already done much of the work. Decoding supplied the definitions, explanation identified the important factor, and strategy selected a direct route from the hypothesis to the conclusion.
+
+\subsection{Reflect}
+
+Reflection is the internalization stage of the cycle. It is not only a passive act of looking back at a completed proof. After writing a proof, the learner should ask three questions:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item What was the essential idea of the proof?
+    \item What pattern can be reused in future problems?
+    \item Can I reconstruct the proof from its structure without memorizing the exact wording?
+\end{enumerate}
+
+Correctness still matters, but reflection focuses on what should be carried forward after the details have been cleared away.
+
+In the example, the essential idea is that the factor \(2\) in the representation \(n = 2k\) survives when \(n\) is squared:
+\[
+    n^2 = (2k)^2 = 2(2k^2).
+\]
+The important point is not the exact wording of the proof, but the structure that made the proof work. This emphasis on recovering a proof from its key idea is consistent with the role of key ideas in making proofs memorable and reconstructible \cite{hanna2014key}. In this example, the structure is:
+\[
+    \text{definition}
+    \rightarrow
+    \text{witness}
+    \rightarrow
+    \text{algebraic manipulation}
+    \rightarrow
+    \text{desired form}.
+\]
+
+For this proof, the reusable pattern is:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item Expand the hypothesis using the relevant definition.
+    \item Use the introduced variable as a witness.
+    \item Manipulate the expression until it has the form required by the conclusion.
+    \item Name the final witness explicitly.
+\end{enumerate}
+
+Reflection should then become active: the learner should try to reconstruct the proof from that pattern. For the example, the reconstruction can be guided by the following outline:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item The goal is to prove that \(n^2\) is even, so the final form should be \(n^2 = 2m\) for some \(m \in \mathbb{Z}\).
+    \item Since \(n\) is even, write \(n = 2k\) for some \(k \in \mathbb{Z}\).
+    \item Square this expression: \(n^2 = (2k)^2 = 4k^2\).
+    \item Factor out \(2\): \(4k^2 = 2(2k^2)\).
+    \item Choose \(m = 2k^2\), which is an integer, and conclude that \(n^2\) is even.
+\end{enumerate}
+
+In words, the learner should be able to recover the argument as follows: since evenness means \(n = 2k\), introduce such an integer \(k\), square the expression, and rewrite the result as twice an integer. If the learner can write the proof again from this structure, with correct notation and complete justification, then the proof has been understood rather than merely memorized. The wording may differ from the original proof, but the logical structure should remain intact.
+
+The same practice can be applied to more difficult proofs. After studying a proof, the learner should put the text aside, keep only the main structure, and try to rebuild the argument. When this attempt fails, the failure is useful: it usually points to a definition, strategy, or logical transition that needs further attention.
+
+\section{Using the Cycle to Write a Proof}
+
+The previous example was deliberately simple. Its purpose was to make the stages of the cycle visible. However, the value of the cycle becomes clearer when the strategy is not immediate. In this section, we apply the same cycle to a proof where the main difficulty is choosing the right proof pattern.
+
+So, let's see how the cycle can be applied to the following theorem:
+
+\begin{exampletheorem}
+\(\sqrt{2}\) is irrational.
+\end{exampletheorem}
+
+\subsection{Decode}
+
+The statement says that \(\sqrt{2}\) cannot be expressed as a ratio of two integers. In other words, there do not exist integers \(p\) and \(q\), with \(q \neq 0\), such that
+\[
+    \sqrt{2} = \frac{p}{q}.
+\]
+To prove that a number is irrational, it is often useful to reason from the opposite assumption. If \(\sqrt{2}\) were rational, then we could write
+\[
+    \sqrt{2} = \frac{p}{q}
+\]
+for some integers \(p\) and \(q\), with \(q \neq 0\). We may also assume that this fraction is in lowest terms, meaning that \(p\) and \(q\) have no common positive divisor greater than \(1\).
+
+After decoding, the goal becomes concrete: assume that a reduced fraction represents \(\sqrt{2}\), and show that this assumption leads to an impossibility.
+
+\subsection{Explain}
+
+The intuition behind the proof is that squaring the equation \(\sqrt{2} = p/q\) forces a factor of \(2\) to appear in a very rigid way. If
+\[
+    \sqrt{2} = \frac{p}{q},
+\]
+then squaring both sides gives
+\[
+    2 = \frac{p^2}{q^2},
+\]
+or equivalently,
+\[
+    p^2 = 2q^2.
+\]
+This equation says that \(p^2\) is even, so \(p\) must be even. But once \(p\) is even, substituting \(p = 2r\) back into the equation forces \(q\) to be even as well.
+
+That is the problem: if both \(p\) and \(q\) are even, then the fraction \(p/q\) was not in lowest terms. The assumption that \(\sqrt{2}\) can be written as a reduced fraction creates a contradiction.
+
+\subsection{Strategize}
+
+The natural proof pattern is proof by contradiction. Instead of trying to directly show that no fraction can represent \(\sqrt{2}\), we temporarily assume that such a fraction exists and then derive something impossible.
+
+The plan is:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item Assume that \(\sqrt{2}\) is rational.
+    \item Write \(\sqrt{2} = p/q\), where \(p,q \in \mathbb{Z}\), \(q \neq 0\), and the fraction is in lowest terms.
+    \item Square both sides and rearrange to get \(p^2 = 2q^2\).
+    \item Use parity to conclude that \(p\) is even.
+    \item Substitute \(p = 2r\) and conclude that \(q\) is also even.
+    \item Observe that this contradicts the assumption that \(p/q\) was in lowest terms.
+\end{enumerate}
+
+The important strategic choice is the reduced fraction. Without that condition, discovering that \(p\) and \(q\) are both even would not be a contradiction; it would only tell us that the fraction can be simplified. The contradiction works because a fraction in lowest terms cannot have both numerator and denominator even.
+
+\subsection{Prove}
+
+\begin{proof}
+Suppose, for the sake of contradiction, that \(\sqrt{2}\) is rational. Then there exist integers \(p\) and \(q\), with \(q \neq 0\), such that
+\[
+    \sqrt{2} = \frac{p}{q}.
+\]
+Choose such a representation with \(p/q\) in lowest terms. Squaring both sides gives
+\[
+    2 = \frac{p^2}{q^2}.
+\]
+Multiplying by \(q^2\), we obtain
+\[
+    p^2 = 2q^2.
+\]
+Thus \(p^2\) is even. If \(p\) were odd, then \(p = 2s + 1\) for some integer \(s\), and
+\[
+    p^2 = (2s + 1)^2 = 2(2s^2 + 2s) + 1,
+\]
+which is odd. Therefore, \(p\) cannot be odd, so \(p\) must be even. Hence there exists an integer \(r\) such that \(p = 2r\).
+
+Substituting \(p = 2r\) into \(p^2 = 2q^2\), we get
+\[
+    (2r)^2 = 2q^2.
+\]
+Therefore,
+\[
+    4r^2 = 2q^2,
+\]
+and dividing by \(2\) gives
+\[
+    q^2 = 2r^2.
+\]
+So \(q^2\) is even, and the same parity reasoning shows that \(q\) is even.
+
+We have shown that both \(p\) and \(q\) are even. This means that they have \(2\) as a common divisor, which contradicts the assumption that \(p/q\) was in lowest terms. Therefore, the original assumption was false, and \(\sqrt{2}\) is irrational.
+\end{proof}
+
+\subsection{Reflect}
+
+The essential idea of the proof is not a decimal property of \(\sqrt{2}\). The proof works because a reduced fraction cannot have a common factor in both numerator and denominator, while the equation
+\[
+    p^2 = 2q^2
+\]
+forces exactly that to happen.
+
+The reusable pattern is:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item To prove that an object does not exist, assume that it does exist.
+    \item Choose the assumed object in a minimal or simplified form when possible.
+    \item Use the defining equation to derive a structural consequence.
+    \item Show that the consequence violates the simplifying condition.
+    \item Conclude that the original assumption was impossible.
+\end{enumerate}
+
+For this proof, the reconstruction outline is:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item Assume \(\sqrt{2} = p/q\) with \(p/q\) in lowest terms.
+    \item Square and rearrange to obtain \(p^2 = 2q^2\).
+    \item Conclude that \(p\) is even, so \(p = 2r\).
+    \item Substitute this back and obtain \(q^2 = 2r^2\).
+    \item Conclude that \(q\) is even.
+    \item Since \(p\) and \(q\) are both even, the fraction was not in lowest terms, a contradiction.
+\end{enumerate}
+
+This example shows why reflection is more than remembering the finished proof. A learner who remembers only the words may forget where the contradiction comes from. A learner who remembers the structure can rebuild the argument: reduced fraction, square, parity of the numerator, parity of the denominator, contradiction.
+
+\section{Conclusion}
+
+This essay has presented the Proof Reconstruction Cycle as a practical way to study and write mathematical proofs. The cycle is not meant to replace mathematical theory, formal training, or sustained practice. Rather, it gives students a structure for doing that practice more deliberately: decode the statement, explain the idea, choose a strategy, write the proof, and reflect on the argument.
+
+The two examples illustrate different uses of the same cycle. In the proof that the square of an even integer is even, the main task was to expand a definition and preserve the required form. In the proof that \(\sqrt{2}\) is irrational, the main task was to choose a suitable strategy: assume a reduced fraction exists and derive a contradiction from parity. The details are different, but the learning process is the same. A proof becomes easier to understand when the learner can identify the objects, the goal, the useful definitions, the strategic pattern, and the reason each step is necessary.
+
+The central message is that proofs should not be treated as fixed texts to memorize. A proof is better understood when it can be reconstructed from its definitions, intuition, strategy, and logical structure. In this sense, reflection is not merely the final step of the process. It is the point at which a solved proof becomes reusable mathematical knowledge.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
